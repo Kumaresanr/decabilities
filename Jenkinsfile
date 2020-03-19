@@ -2,12 +2,14 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      agent {
+        docker {
+          image '$IMAGE_NAME:$BUILD_ID '
+          args '--name docker-node' // list any args
+        }
+      }
       steps {
         checkout scm
-        sh '''
-
-          docker build -t $IMAGE_NAME:$BUILD_ID .
-        '''
       }
     }
 
