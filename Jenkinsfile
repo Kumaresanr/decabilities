@@ -1,5 +1,5 @@
-#!/usr/bin/env groovy
 pipeline {
+
     agent any
     stages {
         stage('Build') {
@@ -19,7 +19,6 @@ pipeline {
                 sh "docker -v"
 
             }
-
         }
     }
 }
