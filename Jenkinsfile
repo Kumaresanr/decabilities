@@ -5,8 +5,9 @@ pipeline {
       agent {
         docker {
           image '$IMAGE_NAME:$BUILD_ID '
-          args '--name docker-node' // list any args
+          args '--name docker-node'
         }
+
       }
       steps {
         checkout scm
@@ -28,7 +29,7 @@ pipeline {
       }
       steps {
         withCredentials(bindings: [[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
-                                          usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
+                                                  usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
           sh '''
 
             docker push $IMAGE_NAME:$BUILD_ID
