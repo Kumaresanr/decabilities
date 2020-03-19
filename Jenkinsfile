@@ -1,18 +1,11 @@
-pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      agent {
-        docker {
-          image '$IMAGE_NAME:$BUILD_ID '
-          args '--name docker-node'
-        }
+node ('jenkins-pipeline') {
+  checkout scm
+  def customImage = docker.build("$IMAGE_NAME:$BUILD_ID")
+  customImage.push()
 
-      }
-      steps {
-        checkout scm
-      }
-    }
+
+
+
 
     stage('Test') {
       steps {
@@ -20,24 +13,7 @@ pipeline {
       }
     }
 
-    stage('Image Release') {
-      when {
-        expression {
-          env.BRANCH_NAME == 'master'
-        }
 
-      }
-      steps {
-        withCredentials(bindings: [[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
-                                                  usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
-          sh '''
-
-            docker push $IMAGE_NAME:$BUILD_ID
-          '''
-        }
-
-      }
-    }
 
     stage('Staging Deployment') {
       when {
@@ -90,9 +66,10 @@ pipeline {
       }
     }
 
-  }
+
   environment {
     IMAGE_NAME = 'vikramvj/test'
     BUILD_ID = 'latest'
   }
+
 }
