@@ -11,26 +11,27 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git 'https://github.com/VikramjitRoy/decabilities.git'
+        docker -v
       }
     }
 
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build
+          docker -v
         }
       }
     }
 
-    stage('Push Image') {
-      steps{
-        script {
-
-            dockerImage.push()
-
-        }
-      }
-    }
+//     stage('Push Image') {
+//       steps{
+//         script {
+//
+//             dockerImage.push()
+//
+//         }
+//       }
+//     }
 
 
 
