@@ -3,13 +3,10 @@ pipeline {
   stages {
     stage('Build') {
       agent {
-        docker {
-          reuseNode true
-          image 'docker:latest'
-        }
-
+        jenkins-slave
       }
       steps {
+        sh 'ls -li'
         sh 'docker -v'
       }
     }
