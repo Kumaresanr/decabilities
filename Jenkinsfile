@@ -11,6 +11,9 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git 'https://github.com/VikramjitRoy/decabilities.git'
+
+      }
+      steps{
         docker -v
       }
     }
