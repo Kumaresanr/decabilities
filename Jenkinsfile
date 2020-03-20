@@ -10,7 +10,7 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          docker -v
+          docker.build.push()
         }
 
       }
