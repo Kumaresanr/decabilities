@@ -1,5 +1,4 @@
 pipeline {
-
   environment {
 
     dockerImage = ""
@@ -36,5 +35,4 @@ pipeline {
 
 
   }
-
 }
