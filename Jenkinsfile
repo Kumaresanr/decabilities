@@ -13,9 +13,7 @@ pipeline {
         git 'https://github.com/VikramjitRoy/decabilities.git'
 
       }
-      steps{
-        docker -v
-      }
+
     }
 
     stage('Build image') {
