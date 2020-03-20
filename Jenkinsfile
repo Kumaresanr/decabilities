@@ -10,7 +10,6 @@ pipeline {
     stage('Build image') {
       steps {
         sh 'docker -v'
-
       }
     }
 
