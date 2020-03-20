@@ -9,8 +9,8 @@ pipeline {
 
     stage('Build image') {
       steps {
-        sh 'docker -v'
-        sh 'ls -li'
+        sh 'docker build -t vikramvj/test:latest .'
+        sh 'docker push vikramvj/test:latest'
       }
     }
 
