@@ -9,8 +9,7 @@ pipeline {
 
     stage('Build image') {
       steps {
-        sh 'docker build -t vikramvj/test:latest .'
-        sh 'docker push vikramvj/test:latest'
+        docker.build("vikramvj/test")
       }
     }
 
