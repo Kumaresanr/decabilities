@@ -3,12 +3,13 @@ pipeline {
   stages {
     stage('sample') {
       agent {
-         docker {
-             image 'golang'
-         }
-     }
+        docker {
+          image 'golang'
+        }
+
+      }
       steps {
-        sh '''echo \'hello, jenkins\' '''
+        sh 'echo \'hello, jenkins\' '
         sh 'go '
       }
     }
