@@ -9,9 +9,7 @@ pipeline {
 
     stage('Build image') {
       steps {
-        script {
-          docker.build.push()
-        }
+        sh 'docker -v'
 
       }
     }
