@@ -9,7 +9,9 @@ pipeline {
 
     stage('Build image') {
       steps {
-        docker.build("vikramvj/test")
+        script{
+          docker.build("vikramvj/test")
+        }
       }
     }
 
